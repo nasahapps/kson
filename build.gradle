@@ -25,6 +25,13 @@ version = "1.0"
 kotlin {
     targets {
         fromPreset(presets.jvm, "jvm")
+
+        final def nativeTarget = System.getenv("SDK_NAME")?.startsWith("macos") ? presets.macosX64
+                : System.getenv("SDK_NAME")?.startsWith("iphoneos") ? presets.iosArm64
+                : presets.iosX64
+        fromPreset(nativeTarget, 'native') {
+            compilations.main.outputKinds("FRAMEWORK")
+        }
     }
     sourceSets {
         commonMain {
@@ -50,5 +57,22 @@ kotlin {
                 implementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
             }
         }
+        nativeMain {
+            dependencies {
+
+            }
+        }
     }
 }
+
+task iosTest {
+    dependsOn "linkTestDebugExecutableNative"
+    doLast {
+        def binary = kotlin.targets.native.compilations.test.getBinary("EXECUTABLE", "DEBUG")
+        exec {
+            commandLine "xcrun", "simctl", "spawn", "iPhone SE", binary.absolutePath
+        }
+    }
+}
+
+check.dependsOn iosTest
