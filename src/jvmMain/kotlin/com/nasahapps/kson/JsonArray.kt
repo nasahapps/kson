@@ -16,7 +16,24 @@ actual class JsonArray actual constructor(json: String) : Iterable<Any> {
     actual fun toList() = array.toList()
 
     override fun iterator(): Iterator<Any> {
-        return array.iterator()
+        // Simplified version from Java ArrayList
+        return object : Iterator<Any> {
+            var cursor = 0
+
+            override fun hasNext(): Boolean {
+                return cursor != length()
+            }
+
+            override fun next(): Any {
+                if (cursor > length()) {
+                    throw NoSuchElementException()
+                } else {
+                    val obj = get(cursor)
+                    cursor++
+                    return obj
+                }
+            }
+        }
     }
 
     override fun toString(): String {
