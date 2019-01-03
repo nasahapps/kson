@@ -4,7 +4,7 @@ import platform.Foundation.NSJSONReadingMutableContainers
 import platform.Foundation.NSJSONSerialization
 import platform.Foundation.NSJSONWritingPrettyPrinted
 
-actual class JsonArray actual constructor(json: String) {
+actual class JsonArray actual constructor(json: String) : Iterable<Any> {
 
     private val array: MutableList<Any>
 
@@ -25,6 +25,10 @@ actual class JsonArray actual constructor(json: String) {
     }
 
     actual fun toList() = array.toList()
+
+    override fun iterator(): Iterator<Any> {
+        return array.iterator()
+    }
 
     actual fun put(value: Any) {
         array.add(value)
