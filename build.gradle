@@ -20,7 +20,7 @@ apply plugin: "kotlin-multiplatform"
 apply plugin: "maven-publish"
 
 group = "com.nasahapps.kson"
-version = "1.0"
+version = "1.0.1"
 
 kotlin {
     targets {

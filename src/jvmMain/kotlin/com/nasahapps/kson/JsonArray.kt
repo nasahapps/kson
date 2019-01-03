@@ -28,7 +28,12 @@ actual class JsonArray actual constructor(json: String) : Iterable<Any> {
                 if (cursor > length()) {
                     throw NoSuchElementException()
                 } else {
-                    val obj = get(cursor)
+                    var obj: Any = get(cursor)
+                    if (obj is JSONObject) {
+                        obj = JsonObject(obj.toString())
+                    } else if (obj is JSONArray) {
+                        obj = JsonArray(obj.toString())
+                    }
                     cursor++
                     return obj
                 }
