@@ -3,7 +3,7 @@ package com.nasahapps.kson
 import org.json.JSONArray
 import org.json.JSONObject
 
-actual class JsonArray actual constructor(json: String) {
+actual class JsonArray actual constructor(json: String) : Iterable<Any> {
 
     private val array = JSONArray(json)
 
@@ -14,6 +14,10 @@ actual class JsonArray actual constructor(json: String) {
     actual fun length() = array.length()
 
     actual fun toList() = array.toList()
+
+    override fun iterator(): Iterator<Any> {
+        return array.iterator()
+    }
 
     override fun toString(): String {
         return array.toString()

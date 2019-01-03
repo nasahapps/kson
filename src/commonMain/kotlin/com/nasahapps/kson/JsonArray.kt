@@ -1,6 +1,6 @@
 package com.nasahapps.kson
 
-expect class JsonArray(json: String = "[]") {
+expect class JsonArray(json: String = "[]") : Iterable<Any> {
 
     constructor(block: JsonArray.() -> Unit)
 
