@@ -6,6 +6,7 @@ expect class JsonArray(json: String = "[]") : Iterable<Any> {
 
     fun length(): Int
     fun toList(): List<Any>
+    override fun toString(): String
 
     fun put(value: Any)
     fun put(value: Boolean)

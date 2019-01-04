@@ -6,6 +6,7 @@ expect class JsonObject(json: String = "{}") {
 
     fun keys(): List<String>
     fun toMap(): Map<String, Any>
+    override fun toString(): String
 
     fun put(key: String, value: Any)
     fun put(key: String, value: Boolean)

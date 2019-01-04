@@ -41,7 +41,7 @@ actual class JsonArray actual constructor(json: String) : Iterable<Any> {
         }
     }
 
-    override fun toString(): String {
+    actual override fun toString(): String {
         return array.toString()
     }
 

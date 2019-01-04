@@ -17,7 +17,7 @@ actual class JsonObject actual constructor(json: String) {
         obj = (NSJSONSerialization.JSONObjectWithData(data, NSJSONReadingMutableContainers, null) as Map<String, Any>).toMutableMap()
     }
 
-    override fun toString(): String {
+    actual override fun toString(): String {
         val data = NSJSONSerialization.dataWithJSONObject(obj, NSJSONWritingPrettyPrinted, null)
         return data.string().toString()
     }

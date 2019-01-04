@@ -11,7 +11,7 @@ actual class JsonObject actual constructor(json: String) {
         block()
     }
 
-    override fun toString(): String {
+    actual override fun toString(): String {
         return obj.toString()
     }
 
