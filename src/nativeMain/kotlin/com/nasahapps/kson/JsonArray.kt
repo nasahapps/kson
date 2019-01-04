@@ -19,10 +19,12 @@ actual class JsonArray actual constructor(json: String) : Iterable<Any> {
 
     actual fun length() = array.size
 
-    actual override fun toString(): String {
+    override fun toString(): String {
         val data = NSJSONSerialization.dataWithJSONObject(array, NSJSONWritingPrettyPrinted, null)
         return data.string().toString()
     }
+
+    actual fun string() = toString()
 
     actual fun toList() = array.toList()
 
