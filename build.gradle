@@ -44,15 +44,8 @@ kotlin {
             implementation "org.jetbrains.kotlin:kotlin-test:$kotlin_version"
             implementation "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
         }
-        nativeMain.dependencies {
-
-        }
-        nativeMain.dependencies {
-
-        }
-        nativeTest.dependencies {
-
-        }
+        nativeMain
+        nativeTest
         configure([macosX64Main, iosArm64Main, iosX64Main]) {
             dependsOn nativeMain
         }
